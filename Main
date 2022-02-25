@@ -1,0 +1,33 @@
+import random
+
+numberOfStreaks = 0
+listOf100 = []
+streak = 0
+
+
+def toss():
+    flip = random.randint(0, 1)
+    if flip == 0:
+        return 'H'
+    else:
+        return 'T'
+
+
+for experimentNumber in range(10000):
+    # Code that creates a list of 100 'heads' or 'tails' values.
+    for flipCoin in range(100):
+        listOf100.append(toss())
+
+    # Code that checks if there is a streak of 6 'heads' or 'tails' in a row.
+    for listItem in range(len(listOf100) - 1):
+        if listOf100[listItem] == listOf100[listItem + 1]:
+            streak += 1
+            if streak == 5:
+                numberOfStreaks += 1
+                streak = 0
+                break
+        else:
+            streak = 0
+    listOf100 = []
+
+print('Chance of streak: %s%%' % (numberOfStreaks / 10000))
